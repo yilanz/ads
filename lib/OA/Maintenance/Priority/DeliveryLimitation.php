@@ -355,8 +355,8 @@ class OA_Maintenance_Priority_DeliveryLimitation
             }
         }
 
-        // Step 4: Subtract any blocked interval values
-        if ($this->blockedOperationIntervalCount > 0) {
+        // Step 4: Subtract any blocked interval values after today
+        if (!empty($aDays) && $this->blockedOperationIntervalCount > 0) {
             OA::debug("      - Subtracting {$this->blockedOperationIntervalCount} blocked intervals", PEAR_LOG_DEBUG);
             foreach ($this->aBlockedOperationIntervalDates as $aDates) {
                 if ($aDates['start']->after($oEndOfToday)) {
